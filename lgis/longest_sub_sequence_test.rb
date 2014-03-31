@@ -13,4 +13,10 @@ class LongestSubSequenceTest < Test::Unit::TestCase
     assert_equal [5, 4, 2], LongestSubsequence.find_decreasing_sub_sequence(seq)
   end
 
+  def test_big_dataset
+    seq = read_dataset 'rosalind_lgis_1_dataset.txt'
+    assert_equal 177, LongestSubsequence.find_increasing_sub_sequence(seq).size
+    assert_equal 176, LongestSubsequence.find_decreasing_sub_sequence(seq).size
+  end
+
 end

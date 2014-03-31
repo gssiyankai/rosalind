@@ -13,8 +13,7 @@ class LongestSubsequence
     seq[1..-1].reduce([[seq[0]]]) { |acc, i|
       acc.map { |sub_seq|
         if sub_seq.last < i
-          sub_seq << i
-          [sub_seq]
+          [sub_seq, sub_seq + [i]]
         else
           [sub_seq, sub_seq.reverse.drop_while { |v| v > i }.reverse + [i]]
         end
