@@ -19,4 +19,9 @@ class TreeTest < Test::Unit::TestCase
     assert_equal 2, Tree.minimum_edges([[1,2],[3,4],[2,3],[5,6]])
   end
 
+  def test_big_dataset
+    edges = read_dataset 'rosalind_tree.txt'
+    assert_equal 238, Tree.minimum_edges(edges)
+  end
+
 end

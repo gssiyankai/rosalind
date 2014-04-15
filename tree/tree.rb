@@ -10,10 +10,10 @@ class Tree
                         end
                       }
         trees = trees.reduce([]) { |acc, tree|
-                          if acc.empty?
-                            acc << tree
-                          elsif not (acc.last & tree).empty?
+                          if not acc.empty? and not (acc.last & tree).empty?
                             acc[-1] = acc.last | tree
+                          else
+                            acc << tree
                           end
                           acc
                        }
