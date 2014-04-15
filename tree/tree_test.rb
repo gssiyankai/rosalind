@@ -15,4 +15,8 @@ class TreeTest < Test::Unit::TestCase
     assert_equal 3, Tree.minimum_edges(edges)
   end
 
+  def test_merge
+    assert_equal 2, Tree.minimum_edges([[1,2],[3,4],[2,3],[5,6]])
+  end
+
 end
