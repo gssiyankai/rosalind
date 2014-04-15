@@ -4,17 +4,15 @@ require_relative 'tree'
 class TreeTest < Test::Unit::TestCase
 
   def read_dataset f
-	lines = File.readlines(f)
-	n = lines.first
-        edges = lines[1..-1].map { |line|
-			        line.split(' ').map(&:to_i)
-			     }
-	[n, edges]
+    lines = File.readlines(f)
+    lines[1..-1].map { |line|
+                  line.split(' ').map(&:to_i)
+                }
   end
 
   def test_simple
-    n, edges = read_dataset 'small_dataset.txt'
-    assert_equal 3, Tree.minimum_edges(n, edges)
+    edges = read_dataset 'small_dataset.txt'
+    assert_equal 3, Tree.minimum_edges(edges)
   end
 
 end
