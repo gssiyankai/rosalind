@@ -1,27 +1,35 @@
 class Tree
 
-	def self.minimum_edges n, edges
-		edges.reduce([]) { |trees, edge|
-			if not contains?(trees, edge[0]) and not contains?(trees, edge[1])
-				trees << edge
-			else
-				trees = trees.map { |sub_tree|
-						if (sub_tree & edge).empty?
-							sub_tree
-						else
-							sub_tree | edge 
-						end
-					    }
-			end
-			trees
-		}.size
-	end
+  def self.minimum_edges n, edges
+    trees = edges.reduce([]) { |trees, edge|
+                trees = merge trees, edge
+                trees.reduce([]) { |acc, tree|
+                                    merge(acc, tree)
+                                 }
+            }
+    single_vertices = (1..n).reject { |i| contains?(trees, [i]) }
+    trees.size + single_vertices.size - 1
+  end
 
-	private
+  private
 
-	def self.contains? trees, vertex
-		trees.map { |tree| tree.include? vertex }
-		     .include?(true)			
-	end
+  def self.contains? trees, tree
+    trees.map { |t| not (t & tree).empty? }
+         .include?(true)
+  end
+
+  def self.merge trees, tree
+    merge = trees.map { |t|
+                    if (t & tree).empty?
+                      t
+                    else
+                      t | tree
+                    end
+                 }
+    if not contains?(merge, tree)
+      merge << tree
+    end
+    merge
+  end
 
 end
