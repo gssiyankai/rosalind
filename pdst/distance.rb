@@ -5,15 +5,15 @@ def distance s1, s2
     .to_f / a1.size
 end
 
-strings = File.readlines('small_dataset.txt')
-              .each_with_index
-              .map { |line, i|
-                if i%2==0
-                  nil
+strings = File.readlines('rosalind_pdst.txt')
+              .reduce([]) { |acc, s|
+                if s.start_with?('>')
+                  acc << ''
                 else
-                  line.strip
+                  acc[-1] = acc[-1] + s.strip
                 end
-              }.reject(&:nil?)
+                acc
+              }
 
 n = strings.size
 
@@ -24,5 +24,6 @@ matrix = (0..n-1).map { |i|
                 }
 
 matrix.each { |r|
-  puts r.join(' ')
+  puts r.map{ |d| '%.3f' % d }
+        .join(' ')
 }
