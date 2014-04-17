@@ -1,7 +1,7 @@
 def distance s1, s2
   a1, a2 = [s1,s2].map { |s| s.split('') }
   a1.zip(a2)
-    .count{ |a| a[0]!=a[1] }
+    .count{ |a,b| a!=b}
     .to_f / a1.size
 end
 
