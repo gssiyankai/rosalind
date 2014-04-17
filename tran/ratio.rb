@@ -1,6 +1,6 @@
 TRANSITIONS = { 'A' => 'G', 'G' => 'A', 'C' => 'T', 'T' => 'C' }
 
-s1, s2 = File.readlines('small_dataset.txt')
+s1, s2 = File.readlines('rosalind_tran.txt')
              .reduce([]) { |acc, s|
                 if s.start_with?('>')
                   acc << ''
