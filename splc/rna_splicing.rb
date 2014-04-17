@@ -18,7 +18,7 @@ DNA_CODON_TABLE = {
 }
 
 
-lines = File.readlines('small_dataset.txt')
+lines = File.readlines('rosalind_splc.txt')
 	      .reduce([]) { |acc, s|
 	        if s.start_with?('>')
 	          acc << ''
