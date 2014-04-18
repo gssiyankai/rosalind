@@ -21,7 +21,7 @@ MASS_TABLE = {
 		'Y' => 163.06333 
 	}.map { |k,v| [k,v.round(2)] }.to_h
 
-weights = File.readlines('small_dataset.txt').map(&:to_f)
+weights = File.readlines('rosalind_spec.txt').map(&:to_f)
 
 puts (0..weights.size-2).reduce([]) { |acc, i|
 				delta = weights[i+1] - weights[i]
